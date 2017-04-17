@@ -3,20 +3,13 @@ package pkgPoker.app.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.util.Duration;
 import pkgPoker.app.MainApp;
-import pokerBase.Action;
-import pkgPokerEnum.eAction;
 
 public class ClientServerStartController implements Initializable {
 

@@ -1,29 +1,19 @@
 package pkgPoker.app.controller;
 
-import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.ToggleGroup;
-import javafx.stage.FileChooser;
 import pkgPoker.app.MainApp;
-import pokerBase.Card;
 import pkgPokerEnum.eGame;
-import pkgPokerEnum.eRank;
-import pkgPokerEnum.eSuit;
 
 
 /**

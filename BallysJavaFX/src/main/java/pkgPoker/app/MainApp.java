@@ -59,13 +59,13 @@ public class MainApp extends Application {
 
 	private boolean isServer = false;
 
-	private Player appPlayer;
+	private static Player appPlayer;
 
 	public int GetPlayerID()
 	{
 		return pClient.getID();
 	}
-	public Player getPlayer() {
+	public static Player getPlayer() {
 		return appPlayer;
 	}
 
