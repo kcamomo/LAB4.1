@@ -2,6 +2,7 @@ package pkgPoker.app.controller;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -26,6 +27,7 @@ import pkgPokerEnum.eAction;
 import pkgPokerEnum.eGame;
 import pkgPokerBLL.Action;
 import pkgPokerBLL.GamePlay;
+import pkgPokerBLL.Player;
 import pkgPokerBLL.Table;
 
 public class PokerTableController implements Initializable {
@@ -104,11 +106,31 @@ public class PokerTableController implements Initializable {
 	//TODO: Lab #4 - Complete (fix) setiPlayerPosition
 	public void btnSitLeave_Click(ActionEvent event) {
 
-		// Set the PlayerPosition in the Player
-		mainApp.getPlayer().setiPlayerPosition(1);
-
-		// Build an Action message
-		Action act = new Action(eAction.Sit, mainApp.getPlayer());
+		Button pressed=(Button)event.getSource();
+		
+		Action act=new Action();
+		
+		if(pressed.getId()=="btnPos1SitLeave"&&pressed.getText()=="Sit")
+		{
+			mainApp.getPlayer().setiPlayerPosition(1);
+			
+			act = new Action(eAction.Sit, mainApp.getPlayer());
+		}
+		else if(pressed.getId()=="btnPos2SitLeave"&&pressed.getText()=="Sit")
+		{
+			mainApp.getPlayer().setiPlayerPosition(2);
+			act = new Action(eAction.Sit, mainApp.getPlayer());
+		}
+		else if(pressed.getId()=="btnPos2SitLeave"&&pressed.getText()=="Leave")
+		{
+			mainApp.getPlayer().setiPlayerPosition(-1);
+			act= new Action(eAction.Leave, mainApp.getPlayer());
+		}
+		else if(pressed.getId()=="btnPos1SitLeave"&&pressed.getText()=="Leave")
+		{
+			mainApp.getPlayer().setiPlayerPosition(-1);
+			act= new Action(eAction.Leave, mainApp.getPlayer());
+		}
 
 		// Send the Action to the Hub
 		mainApp.messageSend(act);
@@ -157,6 +179,52 @@ public class PokerTableController implements Initializable {
 
 	//TODO: Lab #4 Complete the implementation
 	public void Handle_TableState(Table HubPokerTable) {
+		
+		HashMap<UUID, Player> PlayersMap=HubPokerTable.getTablePlayers();
+		
+		ArrayList<Player> players=(ArrayList<Player>) PlayersMap.values();
+		
+		for(Player p : players)
+		{
+			if(p.getiPlayerPosition()==1)
+			{
+				lblPlayerPos1.setText(p.getPlayerName());
+				
+				
+				
+				if(p.getiPlayerPosition()==mainApp.getPlayer().getiPlayerPosition())
+				{
+					btnPos1SitLeave.isSelected();
+					
+					btnPos1SitLeave.setText("Leave");
+				}
+				else
+				{
+					btnPos1SitLeave.setVisible(false);
+				}
+				
+				
+			}
+			else if(p.getiPlayerPosition()==2)
+			{
+				lblPlayerPos2.setText(p.getPlayerName());
+				
+				
+				
+				if(p.getiPlayerPosition()==mainApp.getPlayer().getiPlayerPosition())
+				{
+					btnPos2SitLeave.isSelected();
+					
+					btnPos2SitLeave.setText("Leave");
+				}
+				else
+				{
+					btnPos2SitLeave.setVisible(false);
+				}
+			
+			}
+		}
+		
 
 	}
 

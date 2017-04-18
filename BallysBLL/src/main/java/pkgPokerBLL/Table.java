@@ -7,7 +7,12 @@ import java.util.HashMap;
 public class Table implements Serializable {
 
 	private UUID TableID;
+
 	private HashMap<UUID, Player> TablePlayers = new HashMap<UUID, Player>();
+	
+	public HashMap<UUID, Player> getTablePlayers() {
+		return TablePlayers;
+	}
 
 	public Table() {
 		super();
@@ -15,6 +20,7 @@ public class Table implements Serializable {
 	}
 
 	public UUID getTableID() {
+	//	TablePlayers.values()
 		return TableID;
 	}
 
