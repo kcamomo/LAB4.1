@@ -1,14 +1,29 @@
 package pkgPoker.app.model;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 import netgame.common.Hub;
-import pkgPoker.app.MainApp;
 import pkgPokerBLL.Action;
+import pkgPokerBLL.Card;
+import pkgPokerBLL.CardDraw;
+import pkgPokerBLL.Deck;
 import pkgPokerBLL.GamePlay;
+import pkgPokerBLL.GamePlayPlayerHand;
 import pkgPokerBLL.Player;
 import pkgPokerBLL.Rule;
 import pkgPokerBLL.Table;
+
+import pkgPokerEnum.eAction;
+import pkgPokerEnum.eCardDestination;
+import pkgPokerEnum.eDrawCount;
+import pkgPokerEnum.eGame;
+import pkgPokerEnum.eGameState;
 
 public class PokerHub extends Hub {
 
@@ -38,14 +53,12 @@ public class PokerHub extends Hub {
 			Action act = (Action) message;
 			switch (act.getAction()) {
 			case Sit:
-				HubPokerTable.AddPlayerToTable(actPlayer.getPlayerID(), actPlayer);
-				MainApp.getPlayer().setiPlayerPosition(1);			
+				HubPokerTable.AddPlayerToTable(actPlayer);
 				resetOutput();
 				sendToAll(HubPokerTable);
 				break;
-			case Leave:
-				HubPokerTable.RemovePlayerFromTable(actPlayer.getPlayerID());
-				MainApp.getPlayer().setiPlayerPosition(0);
+			case Leave:			
+				HubPokerTable.RemovePlayerFromTable(actPlayer);
 				resetOutput();
 				sendToAll(HubPokerTable);
 				break;
