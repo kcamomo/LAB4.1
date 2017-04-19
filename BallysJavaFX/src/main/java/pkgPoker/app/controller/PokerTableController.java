@@ -191,7 +191,7 @@ public class PokerTableController implements Initializable {
 
 	public void Handle_TableState(Table HubPokerTable) {
 
-		Iterator it = HubPokerTable.getHmPlayer().entrySet().iterator();
+		Iterator I = HubPokerTable.getHmPlayer().entrySet().iterator();
 		
 		lblPlayerPos1.setText(" ");
 		lblPlayerPos2.setText(" ");
@@ -205,9 +205,9 @@ public class PokerTableController implements Initializable {
 			btnPos2SitLeave.setVisible(false);
 		}
 
-		while (it.hasNext())
+		while (I.hasNext())
 		{
-			Map.Entry pair = (Map.Entry) it.next();
+			Map.Entry pair = (Map.Entry) I.next();
 			Player player = (Player) pair.getValue();
 
 			if (player.getiPlayerPosition() == 1) 
